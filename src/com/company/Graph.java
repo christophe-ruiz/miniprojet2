@@ -1,5 +1,9 @@
 package com.company;
 
+import com.company.draw.Triangle;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,48 +29,73 @@ public class Graph {
         }
         return count;
     }
-    public void displayVertexes(int i){
-        if (vertex.get(i).getColor()==Color.RED){
-            System.out.print("(R)");
-        }
-        else if (vertex.get(i).getColor()==Color.BLUE){
-            System.out.print("(B)");
-        }
-    }
-    public void displayEdges(int i) {
-        Edge e = edges.get(i);
-        if (e==null) return;
-        if (e.isLeft()){
-            System.out.print("<-");
-            if (e.getColor()==Color.RED){
-                System.out.print("R--");
+    public void displayVertexes(FileWriter fw, int i) throws IOException {
+            if (vertex.get(i).getColor()==Color.RED){
+                fw.write("<body>&#x1F534;</body>");
             }
             else{
-                System.out.print("B--");
+                fw.write("<body>&#x1F535;</body>");
             }
-        }
-        else{
-            System.out.print("--");
-            if (e.getColor()==Color.RED){
-                System.out.print("R->");
-            }
-            else{
-                System.out.print("B->");
-            }
-        }
     }
+    public void displayEdges(FileWriter fw, int i) throws IOException {
 
-    @Override
+            if (edges.get(i)==null){return;}
+            else if (edges.get(i).isLeft()) {
 
-    public String toString(){
+                if (edges.get(i).getColor() == Color.RED) {
+                    fw.write("<a style=\"color:red;\"> &#x2190 </a>");
+                } else {
+                    fw.write("<a style=\"color:blue;\"> &#x2190 </a>");
+                }
+            }
+            else {
 
+                if (edges.get(i).getColor() == Color.RED) {
+                    fw.write("<a style=\"color:red;\"> &#x2192 </a>");
+                } else {
+                    fw.write("<a style=\"color:blue;\"> &#x2192 </a>");
+                }
+            }
+
+
+    }
+        @Override
+        public String toString() {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter("output.html");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fw.write("<html>");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         edges.add(null);
         for (int i =0 ; i<100 ; i++ ){
-            displayVertexes(i);
-            displayEdges(i);
-
+            try {
+                displayVertexes(fw,i);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                displayEdges(fw,i);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.print("\n");
+
+        try {
+            fw.write("</html>");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return ("Number of red vertex : " + getNbColoredVertex(Color.RED) + '\n' +
                 "Number of blue vertex : " + getNbColoredVertex(Color.BLUE) + '\n');
