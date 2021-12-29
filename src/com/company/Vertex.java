@@ -17,7 +17,7 @@ public class Vertex {
         this.outGoingEdges = new ArrayList<>();
     }
 
-    private void addEdge(Edge edge){
+    public void addEdge(Edge edge){
         this.outGoingEdges.add(edge);
     }
 
@@ -25,9 +25,7 @@ public class Vertex {
         return color;
     }
 
-    public void addEdge(Color color, Vertex goTo){
-        this.addEdge(new Edge(color,goTo));
-    }
+
 
     public void setColor(Color color) {
         this.color = color;
