@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        final int NB_VERTEX = 100;
+        final int NB_VERTEX = 10;
         final double RED_VERTEX_PROB = 0.5;
         final double RED_EDGE_PROB = 0.5;
         final double LEFT_PROB = 0.5;
