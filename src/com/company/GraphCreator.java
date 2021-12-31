@@ -27,7 +27,7 @@ public class GraphCreator {
     }
 
     public Color pickColor(double proba){
-        int choice = rand.nextInt(100);
+        int choice = rand.nextInt(maxSommet);
         if (choice < proba * 100) {
             return(Color.RED);
         }
@@ -37,7 +37,7 @@ public class GraphCreator {
     }
 
     public boolean pickSide(){
-        int choice = rand.nextInt(100);
+        int choice = rand.nextInt(maxSommet);
         if (choice < leftProb * 100) {
             return(true);
         }

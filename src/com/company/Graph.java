@@ -73,7 +73,7 @@ public class Graph {
             e.printStackTrace();
         }
         edges.add(null);
-        for (int i =0 ; i<100 ; i++ ){
+        for (int i =0 ; i<vertex.size() ; i++ ){
             try {
                 displayVertexes(fw,i);
             } catch (IOException e) {
