@@ -8,20 +8,19 @@ import com.company.Vertex;
 import java.io.IOException;
 import java.util.Stack;
 
-public class Algo2 {
+public class Algo2 implements Algo {
 
     private Graph graph;
     private Stack<Vertex> redStack;
     private int count = 0;
 
     public Algo2(Graph graph){
-        this.graph=graph;
-        initializeStack();
+        setGraph(graph);
     }
 
     public void traiter(Vertex v) throws IOException {
         for (Edge e : v.getOutGoingEdges()){
-
+            if (e.isDeleted()) continue;
             //Pour chaque arcs sortant BLEU ebi de vi
             if (e.getColor().equals(Color.BLUE)){
                 //Si ebi pointe vers un sommet rouge wi
@@ -45,9 +44,9 @@ public class Algo2 {
             e.setDeleted(true);
         }
         v.setDeleted(true);
+        this.count+=1;
         graph.display();
         graph.jumpLine();
-        this.count+=1;
     }
 
     public int run() throws IOException {
@@ -59,8 +58,14 @@ public class Algo2 {
             Vertex v = redStack.pop();
             traiter(v);
         }
-        graph.endDisplay();
         return count;
+    }
+
+    @Override
+    public void setGraph(Graph graph) {
+        this.graph = graph;
+        this.count = 0;
+        initializeStack();
     }
 
     private void initializeStack(){

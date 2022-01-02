@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class Algo1 {
+public class Algo1 implements Algo {
 
     private Graph graph;
     private ArrayList<Vertex> redListSorted;
 
     public Algo1(Graph graph){
-        this.graph=graph;
-        this.updateRedListSorted();
+        setGraph(graph);
     }
 
     public void updateRedListSorted(){
@@ -35,8 +34,14 @@ public class Algo1 {
             graph.display();
             graph.jumpLine();
         }
-        graph.endDisplay();
+//        graph.endDisplay();
         return count;
+    }
+
+    @Override
+    public void setGraph(Graph graph) {
+        this.graph = graph;
+        updateRedListSorted();
     }
 
     private void deleteVertex(Vertex v) {

@@ -1,6 +1,6 @@
 package com.company.Benchmark;
 
-import com.company.Algo.Algo1;
+import com.company.Algo.Algo;
 import com.company.Graph;
 import com.company.GraphCreator;
 
@@ -24,7 +24,10 @@ public class Benchmark {
         add(1.);
     }};
 
-    public Benchmark() {
+    private Algo algo;
+
+    public Benchmark(Algo algo) {
+        this.algo = algo;
     }
 
     public void bench(double LEFT_PROB, int nb_graph, int NB_VERTEX) throws IOException {
@@ -34,7 +37,7 @@ public class Benchmark {
                 for (int i = 0; i <= nb_graph; ++i) {
                     GraphCreator creator = new GraphCreator(NB_VERTEX, RED_VERTEX_PROB, RED_EDGE_PROB, LEFT_PROB);
                     Graph graph = creator.createInstance();
-                    Algo1 algo = new Algo1(graph);
+                    algo.setGraph(graph);
                     try {
                         line.add((double) algo.run());
                     } catch (IOException e) {

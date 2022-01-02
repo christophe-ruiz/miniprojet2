@@ -20,10 +20,11 @@ public class Main {
         GraphCreator creator = new GraphCreator(NB_VERTEX, RED_VERTEX_PROB, RED_EDGE_PROB, LEFT_PROB);
 
         Graph graph2 = creator.createInstance();
-        Algo2 algo2 = new Algo2(graph2);
-        System.out.println("La plus longue chaine rouge supprimable pour l'algo 2 est : "+algo2.run());
+//        Algo2 algo2 = new Algo2(graph2);
+//        System.out.println("La plus longue chaine rouge supprimable pour l'algo 2 est : "+algo2.run());
 
 //        Benchmark b = new Benchmark();
-//        b.bench(LEFT_PROB, NB_GRAPH, NB_VERTEX);
+//        b.bench(LEFT_PROB, NB_GRAPH, NB_VERTEX, new Algo2(graph2));
+//        graph2.endDisplay();
     }
 }
