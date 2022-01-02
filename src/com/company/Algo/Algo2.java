@@ -27,6 +27,7 @@ public class Algo2 implements Algo {
                 if (e.getGoingTo().getColor().equals(Color.RED)){
                     //traiter wi
                     traiter(e.getGoingTo());
+                    redStack.remove(e.getGoingTo());
                 }
                 //Modifier la couleur du sommet associé en bleu
                 e.getGoingTo().setColor(Color.BLUE);
