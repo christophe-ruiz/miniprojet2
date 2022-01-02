@@ -72,12 +72,15 @@ public class GraphCreator {
 
             if (e.isLeft()){
                 e.setGoingTo(graph.vertex.get(i));
-                graph.vertex.get(i+1).addEdge(e);
+                graph.vertex.get(i).addIncomingEdge(e);
+                graph.vertex.get(i+1).addOutGoingEdge(e);
             }
             else {
-                e.setGoingTo(graph.vertex.get(i));
-                graph.vertex.get(i).addEdge(e);
+                e.setGoingTo(graph.vertex.get(i+1));
+                graph.vertex.get(i+1).addIncomingEdge(e);
+                graph.vertex.get(i).addOutGoingEdge(e);
             }
         }
+        graph.edges.add(null);
     }
 }

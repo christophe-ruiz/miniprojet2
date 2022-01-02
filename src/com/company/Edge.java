@@ -4,7 +4,7 @@ public class Edge {
 
 
     private Color color;
-
+    private boolean deleted;
     public void setGoingTo(Vertex goingTo) {
         this.goingTo = goingTo;
     }
@@ -43,5 +43,13 @@ public class Edge {
 
     public Vertex getGoingTo() {
         return goingTo;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
     }
 }
