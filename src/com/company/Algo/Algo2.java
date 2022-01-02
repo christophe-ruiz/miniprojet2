@@ -34,10 +34,11 @@ public class Algo2 implements Algo {
             }
             //Pour chaque arcs sortant ROUGE eri de vi
             else if (e.getColor().equals(Color.RED)){
+                if (e.getGoingTo().getColor().equals(Color.BLUE))
+                    redStack.push(e.getGoingTo());
                 //Modifier la couleur du sommet associé en rouge
                 e.getGoingTo().setColor(Color.RED);
                 //Empiler le nouveau sommet rouge dans S ( il sera le prochain à être dépilé)
-                redStack.push(e.getGoingTo());
             }
             e.setDeleted(true);
         }
