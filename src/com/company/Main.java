@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Algo.Algo1;
+import com.company.Algo.Algo2;
 
 import java.io.IOException;
 
@@ -15,9 +16,9 @@ public class Main {
 
         GraphCreator creator = new GraphCreator(NB_VERTEX, RED_VERTEX_PROB, RED_EDGE_PROB, LEFT_PROB);
 
-        Graph graph = creator.createInstance();
-        Algo1 algo = new Algo1(graph);
-        System.out.println("la plus longue chaîne rouge supprimable est : " + algo.run());
+        Graph graph2 = creator.createInstance();
+        Algo2 algo2 = new Algo2(graph2);
+        System.out.println("La plus longue chaine rouge supprimable pour l'algo 2 est : "+algo2.run());
 
         //bug au niveau de la génération des edge avec leur direction sur elles memes A REGLER
 
