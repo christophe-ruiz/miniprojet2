@@ -19,29 +19,21 @@ public class Algo2 {
         initializeStack();
     }
 
-    public void traiter(Vertex v){
+    public void traiter(Vertex v) throws IOException {
         for (Edge e : v.getOutGoingEdges()){
 
             //Pour chaque arcs sortant BLEU ebi de vi
             if (e.getColor().equals(Color.BLUE)){
                 //Si ebi pointe vers un sommet rouge wi
                 if (e.getGoingTo().getColor().equals(Color.RED)){
-                    //empiler vi
-                    //redStack.push(v);
-
                     //traiter wi
                     traiter(e.getGoingTo());
-
-                    //retirer wi de S
-                    //redStack.remove(e.getGoingTo());
                 }
                 //Modifier la couleur du sommet associé en bleu
                 e.getGoingTo().setColor(Color.BLUE);
-                redStack.remove(e);
             }
-
             //Pour chaque arcs sortant ROUGE eri de vi
-            if (e.getColor().equals(Color.RED)){
+            else if (e.getColor().equals(Color.RED)){
                 //Modifier la couleur du sommet associé en rouge
                 e.getGoingTo().setColor(Color.RED);
                 //Empiler le nouveau sommet rouge dans S ( il sera le prochain à être dépilé)
@@ -49,14 +41,19 @@ public class Algo2 {
             }
             e.setDeleted(true);
         }
+        for (Edge e : v.getIncomingEdges()){
+            e.setDeleted(true);
+        }
         v.setDeleted(true);
         graph.display();
+        graph.jumpLine();
         this.count+=1;
     }
 
-    public int run()  {
+    public int run() throws IOException {
         //Tant que la pile n'est pas vide
         graph.display();
+        graph.jumpLine();
         while(!redStack.isEmpty()){
             //Dépiler le sommet vi de S
             Vertex v = redStack.pop();
